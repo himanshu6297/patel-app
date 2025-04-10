@@ -50,7 +50,7 @@ jobs:
             --desired-count 2 \
             --launch-type FARGATE \
             --network-configuration "awsvpcConfiguration={subnets=[subnet-0a804a85454c1ec70,subnet-0edfeeb4bcbd0a2d8],securityGroups=[sg-04f52a324cba31d84],assignPublicIp=DISABLED}" \
-            --load-balancers "arn:aws:elasticloadbalancing:ca-central-1:761018886060:targetgroup/Final-Patel-CUP2C5OG5XJV/de6385955c886e9c,containerName=patel-container,containerPort=5000" \
+            --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:ca-central-1:761018886060:targetgroup/Final-Patel-CUP2C5OG5XJV/de6385955c886e9c,containerName=patel-container,containerPort=5000" \
             --region ca-central-1
         else
           echo "Service patel-app-service already exists, proceeding with deployment..."
