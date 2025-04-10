@@ -65,7 +65,7 @@ jobs:
             --task-definition "$TASK_DEF_ARN" \
             --desired-count 2 \
             --launch-type FARGATE \
-            --network-configuration "awsvpcConfiguration={subnets=[subnet-08d6326d6926f6872,subnet-0b47b5dda80581e0d],securityGroups=[sg-0d1f474fde0e6943b],assignPublicIp=DISABLED}" \
+            --network-configuration "awsvpcConfiguration={subnets=[subnet-0a804a85454c1ec70,subnet-0edfeeb4bcbd0a2d8],securityGroups=[sg-04f52a324cba31d84],assignPublicIp=DISABLED}" \
             --load-balancers "targetGroupArn=arn:aws:elasticloadbalancing:ca-central-1:761018886060:targetgroup/Final-Patel-CUP2C5OG5XJV/de6385955c886e9c,containerName=patel-container,containerPort=5000" \
             --region ca-central-1
         else
