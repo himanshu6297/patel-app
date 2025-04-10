@@ -25,6 +25,6 @@
     "requiresCompatibilities": ["FARGATE"],
     "cpu": "256",
     "memory": "512",
-    "executionRoleArn": "arn:aws:iam::761018886060:role/ecsTaskExecutionRole",
-    "taskRoleArn": "arn:aws:iam::761018886060:role/ecsTaskExecutionRole" 
+    "executionRoleArn": "arn:aws:ecs:ca-central-1:761018886060:task-definition/patel-app-task:1",
+    "taskRoleArn": "arn:aws:ecs:ca-central-1:761018886060:task-definition/patel-app-task:1" 
   }
