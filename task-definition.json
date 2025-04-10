@@ -1,30 +1,30 @@
 {
-    "family": "patel-app-task",
-    "networkMode": "awsvpc",
-    "containerDefinitions": [
-      {
-        "name": "patel-container",
-        "image": "761018886060.dkr.ecr.ca-central-1.amazonaws.com/patel-app",
-        "essential": true,
-        "portMappings": [
-          {
-            "containerPort": 5000,
-            "hostPort": 5000
-          }
-        ],
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "options": {
-            "awslogs-group": "patel-app-logs",
-            "awslogs-region": "ca-central-1",
-            "awslogs-stream-prefix": "ecs"
-          }
+  "family": "patel-app-task",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "patel-container",
+      "image": "761018886060.dkr.ecr.ca-central-1.amazonaws.com/patel-app:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5000,
+          "hostPort": 5000
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "patel-logs",
+          "awslogs-region": "ca-central-1",
+          "awslogs-stream-prefix": "ecs"
         }
       }
-    ],
-    "requiresCompatibilities": ["FARGATE"],
-    "cpu": "256",
-    "memory": "512",
-    "executionRoleArn": "arn:aws:ecs:ca-central-1:761018886060:task-definition/patel-app-task:1",
-    "taskRoleArn": "arn:aws:ecs:ca-central-1:761018886060:task-definition/patel-app-task:1" 
-  }
+    }
+  ],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::761018886060:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::761018886060:role/ecsTaskExecutionRole"
+}
