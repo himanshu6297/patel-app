@@ -15,7 +15,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "patel-logs",
+          "awslogs-group": "patel-app-logs",
           "awslogs-region": "ca-central-1",
           "awslogs-stream-prefix": "ecs"
         }
