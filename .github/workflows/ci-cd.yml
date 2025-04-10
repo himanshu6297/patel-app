@@ -29,8 +29,8 @@ jobs:
     # Build and push Docker image
     - name: Build and push Docker image
       env:
-        ECR_REGISTRY: 975050105141.dkr.ecr.ca-central-1.amazonaws.com
-        ECR_REPOSITORY: patel-inft1210-app
+        ECR_REGISTRY: 761018886060.dkr.ecr.ca-central-1.amazonaws.com
+        ECR_REPOSITORY: patel-app
         IMAGE_TAG: latest
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -40,20 +40,20 @@ jobs:
     - name: Create ECS service if not exists
       run: |
         # Check if the service exists
-        SERVICE_EXISTS=$(aws ecs describe-services --cluster patel-cluster --services patel-final-service --region ca-central-1 --query 'services[0].status' --output text 2>/dev/null || echo "NOT_FOUND")
+        SERVICE_EXISTS=$(aws ecs describe-services --cluster patel-cluster --services patel-app-service --region ca-central-1 --query 'services[0].status' --output text 2>/dev/null || echo "NOT_FOUND")
         if [ "$SERVICE_EXISTS" != "ACTIVE" ]; then
-          echo "Service patel-final-service does not exist, creating it..."
+          echo "Service patel-app-service does not exist, creating it..."
           aws ecs create-service \
             --cluster patel-cluster \
-            --service-name patel-final-service \
+            --service-name patel-app-service \
             --task-definition patel-task \
             --desired-count 2 \
             --launch-type FARGATE \
             --network-configuration "awsvpcConfiguration={subnets=[subnet-08d6326d6926f6872,subnet-0b47b5dda80581e0d],securityGroups=[sg-0d1f474fde0e6943b],assignPublicIp=DISABLED}" \
-            --load-balancers "arn:aws:elasticloadbalancing:ca-central-1:975050105141:targetgroup/patel-Patel-HKHUEJERQTPF/a40ac65b288ab022,containerName=patel-container,containerPort=5000" \
+            --load-balancers "arn:aws:elasticloadbalancing:ca-central-1:761018886060:targetgroup/patel-Patel-HKHUEJERQTPF/a40ac65b288ab022,containerName=patel-container,containerPort=5000" \
             --region ca-central-1
         else
-          echo "Service patel-final-service already exists, proceeding with deployment..."
+          echo "Service patel-app-service already exists, proceeding with deployment..."
         fi
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -65,7 +65,7 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v2
       with:
         task-definition: task-definition.json
-        service: patel-final-service
+        service: patel-app-service
         cluster: patel-cluster
         wait-for-service-stability: true
       env:

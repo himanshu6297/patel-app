@@ -1,10 +1,10 @@
 {
-    "family": "inft1210-task",
+    "family": "patel-app-task",
     "networkMode": "awsvpc",
     "containerDefinitions": [
       {
         "name": "patel-container",
-        "image": "975050105141.dkr.ecr.ca-central-1.amazonaws.com/patel-inft1210-app",
+        "image": "761018886060.dkr.ecr.ca-central-1.amazonaws.com/patel-app",
         "essential": true,
         "portMappings": [
           {
@@ -15,7 +15,7 @@
         "logConfiguration": {
           "logDriver": "awslogs",
           "options": {
-            "awslogs-group": "inft1210-logs",
+            "awslogs-group": "patel-app-logs",
             "awslogs-region": "ca-central-1",
             "awslogs-stream-prefix": "ecs"
           }
@@ -25,6 +25,6 @@
     "requiresCompatibilities": ["FARGATE"],
     "cpu": "256",
     "memory": "512",
-    "executionRoleArn": "arn:aws:iam::975050105141:role/ecsTaskExecutionRole",
-    "taskRoleArn": "arn:aws:iam::975050105141:role/ecsTaskExecutionRole"
+    "executionRoleArn": "arn:aws:iam::761018886060:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::761018886060:role/ecsTaskExecutionRole"
   }
